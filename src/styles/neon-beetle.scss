@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Niramit:ital,wght@0,400;0,700;1,400;1,700&family=PT+Mono&display=swap');
+
+$primary: #80deea;
+$dark: #121212;
+
+$bg: mix($primary, $dark, 8%);
+
+$text: transparentize(white, 0.13);
+$textDisabled: transparentize(white, 0.62);
+
+$error: #CF6679;
+
+body {
+	background-color: $bg;
+	color: $text;
+	font-family: 'Niramit', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Julius Sans One', sans-serif;
+}
+
+hr {
+	border-color: transparentize(mix(white, $primary, 80%), 0.13);
+	border-width: 2px;
+}
+
+code {
+	font-family: 'PT Mono', monospace;
+}
+
+a {
+	color: $primary;
+
+	&:hover {
+		color: mix(white, $primary, 12%);
+	}
+}
+
+button {
+	background-color: mix($dark, $primary, 12%);
+	border: none;
+	color: black;
+	transition: outline 0s;
+
+	&:hover:not(:disabled) {
+		background-color: mix(white, $primary, 12%);
+	}
+
+	&:active {
+		background-color: mix($dark, $primary, 24%);
+	}
+
+	&:disabled {
+		background-color: mix(white, $bg, 8%);
+		border: none;
+		color: $textDisabled;
+	}
+}
+
+input, select, textarea {
+	background-color: mix(white, $bg, 8%);
+	border: none;
+	color: $text;
+
+	&:focus:not(:disabled) {
+		background-color: mix(white, $bg, 8%);
+	}
+
+	&:hover:not(:disabled) {
+		background-color: mix(white, $bg, 12%);
+	}
+}
+
+input[type="checkbox"] {
+	position: relative;
+	margin: 0.75rem 0.5rem;
+	accent-color: $primary;
+	
+	&::before {
+		content: "";
+		position: absolute;
+		z-index: 1;
+		top: 50%; left: 50%;
+		transform: translate(-50%, -50%);
+		width: 1.5rem; height: 1.5rem;
+		background-color: mix(white, $bg, 24%);
+	}
+	
+	&::after {
+		content: "✓";
+		position: absolute;
+		z-index: 2;
+		top: 50%; left: 50%;
+		transform: translate(-50%, -50%);
+		width: 1.5rem; height: 1.5rem;
+		background-color: $primary;
+		color: black;
+		line-height: 1;
+		text-align: center;
+		font-weight: bold;
+		font-size: 1.5rem;
+		opacity: 0;
+		transition: opacity 0.1s ease-in;
+	}
+	
+	&:hover {
+		
+		&::before {
+			background-color: mix(white, $bg, 40%);
+			outline: 2px solid $text;
+			outline-offset: 3px;
+		}
+		
+		&::after {
+			background-color: mix($dark, $primary, 24%);
+		}
+	}
+	
+	&:checked {
+		
+		&::after {
+			opacity: 1;
+		}
+	}
+}
+
+input[type="radio"] {
+	position: relative;
+	margin: 0.75rem 0.5rem;
+	accent-color: $primary;
+
+	&::before {
+		content: "";
+		position: absolute;
+		z-index: 1;
+		top: 50%; left: 50%;
+		transform: translate(-50%, -50%);
+		border-radius: 50%;
+		width: 1.5rem; height: 1.5rem;
+		background-color: mix(white, $bg, 24%);
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		z-index: 2;
+		top: 50%; left: 50%;
+		transform: translate(-50%, -50%);
+		border-radius: 50%;
+		width: 1rem; height: 1rem;
+		background-color: $primary;
+		color: black;
+		line-height: 1;
+		text-align: center;
+		font-weight: bold;
+		font-size: 1rem;
+		opacity: 0;
+		transition: opacity 0.1s ease-in;
+	}
+	
+	&:hover {
+
+		&::before {
+			background-color: mix(white, $bg, 40%);
+			outline: 2px solid $text;
+			outline-offset: 3px;
+		}
+
+		&::after {
+			background-color: mix($dark, $primary, 24%);
+		}
+	}
+
+	&:checked {
+
+		&::after {
+			opacity: 1;
+		}
+	}
+}
+
+input[type="range"] {
+	background-color: transparent;
+	vertical-align: text-bottom;
+	
+	&::-webkit-slider-runnable-track {
+		border: none;
+		background-color: mix(white, $bg, 8%);
+		height: 0.5rem;
+	}
+	&::-moz-range-track {
+		border: none;
+		background-color: mix(white, $bg, 8%);
+		height: 0.5rem;
+	}
+
+	&::-webkit-slider-thumb {
+		background-color: $primary;
+		border: none;
+		width: 1rem;
+		height: 1rem;
+	}
+	&::-moz-range-thumb {
+		background-color: $primary;
+		border: none;
+		width: 1rem;
+		height: 1rem;
+	}
+
+	&:focus {
+		background-color: transparent;
+
+		&::-webkit-slider-runnable-track {
+			background-color: mix(white, $bg, 8%);
+		}
+		&::-moz-range-track {
+			background-color: mix(white, $bg, 8%);
+		}
+	}
+	
+	&:hover {
+		background-color: transparent;
+
+		&::-webkit-slider-runnable-track {
+			background-color: mix(white, $bg, 12%);
+		}
+		&::-moz-range-track {
+			background-color: mix(white, $bg, 12%);
+		}
+	}
+}
+
+.passage {
+
+	button {
+
+		&:hover:not(:disabled) {
+			outline: 2px solid $primary;
+			outline-offset: 3px;
+		}
+	}
+}
+
+.error-view {
+
+	button {
+		color: $text;
+		
+		&:hover:not(:disabled) {
+			background-color: transparent;
+			color: white;
+			outline: none;
+		}
+	}
+}
+
+#ui-overlay {
+	background-color: $dark;
+}
+
+#ui-dialog {
+	#ui-dialog-titlebar {
+		background-color: $primary;
+		color: black;
+		padding: 0.5rem 0;
+
+		#ui-dialog-close {
+			height: 100%;
+			color: black;
+
+			&:hover {
+				background-color: $error;
+			}
+		}
+	}
+
+	#ui-dialog-body {
+		background-color: $bg;
+		border: none;
+
+		button {
+			background-color: mix($primary, $dark, 24%);
+			color: white;
+
+			&:hover:not(:disabled) {
+				background-color: mix(white, mix($primary, $dark, 24%), 12%);
+			}
+
+			&:disabled {
+				background-color: mix(white, $bg, 8%);
+				color: $textDisabled;
+			}
+		}
+
+		&.saves {
+
+			tr {
+				border: none;
+			}
+
+			:not(:first-child) {
+				border: none;
+			}
+
+			.empty {
+				color: $textDisabled;
+			}
+		}
+
+		&.settings {
+
+			input[type="range"] {
+				padding-right: 0;
+			}
+
+			button[id|=setting-control] {
+				background-color: mix(white, $bg, 8%);
+				border: none;
+
+				&:hover {
+					background-color: mix(white, $bg, 12%);
+				}
+
+				&.enabled {
+					background-color: $primary;
+					color: black;
+
+					&:hover {
+						background: mix($dark, $primary, 24%);
+					}
+				}
+			}
+		}
+	}
+}
+
+#ui-bar {
+	background-color: mix(white, $bg, 8%);
+	border: none;
+
+	button, [id|=history], a {
+		color: transparentize(white, 0.4);
+		border: none;
+		
+		&:hover:not(:disabled) {
+			background-color: transparent;
+			color: white;
+			border-color: transparent;
+		}
+		
+		&:disabled {
+			border-color: transparent;
+		}
+	}
+	
+	#menu {
+		a {
+			color: transparentize(white, 0.4);
+			border: none;
+			border-bottom: 2px solid transparent;
+
+			&:hover:not(:disabled) {
+				color: white;
+				border-color: white;
+			}
+		}
+	}
+
+
+	#menu {
+
+		ul {
+			border: none;
+
+			li {
+				border: none;
+			}
+		}
+	}
+}
+
+$thumb: mix(white, $bg, 20%);
+$track: mix(white, $bg, 10%);
+
+* {
+	scrollbar-color: $thumb $track;
+	scrollbar-width: thin;
+
+	&::-webkit-scrollbar {
+		width: 0.5rem;
+		height: 0.5rem;
+	}
+	
+	&::-webkit-scrollbar-track {
+		background-color: $track;
+	}
+	
+	&::-webkit-scrollbar-thumb {
+		background-color: $thumb;
+	
+		&:hover {
+			background-color: mix(white, $thumb, 10%);
+		}
+
+		&:active {
+			background-color: mix(white, $thumb, 50%);
+		}
+	}
+	
+	&::-webkit-scrollbar-corner {
+		background-color: transparent;
+	}
+
+	&::selection {
+		background-color: transparentize($primary, 0.8);
+	}
+}

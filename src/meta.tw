@@ -1,0 +1,101 @@
+:: StoryData
+{
+	"ifid": "C7DD2D4D-EE14-4426-AEDA-713AE63A5E1C",
+	"format": "SugarCube",
+	"format-version": "2.36.1"
+}
+
+:: StoryTitle
+SC2 Themes
+
+:: StorySubtitle
+Collection of theme stylesheets for SugarCube 2 projects.
+
+:: StoryCaption
+Current: <<= recall("theme", setup.themes.list[0])>>
+
+:: StoryMenu
+<<script>>
+	setup.themes.generateLinks().appendTo(output);
+<</script>>
+
+:: Start
+
+----
+
+<<link "Link to another world" `passage()`>><</link>> (Which probably doesn't work?)
+
+<<button "Button which does nothing">><</button>> (Shouldn't, at least…)
+
+What pies do you enjoy?
+* <label><<checkbox "$pieBlueberry" false true checked>> Blueberry?</label>
+* <label><<checkbox "$pieCherry" false true>> Cherry?</label>
+* <label><<checkbox "$pieCoconutCream" false true checked>> Coconut cream?</label>
+
+What's your favorite pie?
+* <label><<radiobutton "$pie" "blueberry" checked>> Blueberry?</label>
+* <label><<radiobutton "$pie" "cherry">> Cherry?</label>
+* <label><<radiobutton "$pie" "coconut cream">> Coconut cream?</label>
+
+Write a short essay about pies:
+<<textarea "$pieEssay" "">>
+
+What's your favorite pie? <<textbox "$pie" "Blueberry">>
+\
+The answer to the //Ultimate Question of Life, the Universe, and Everything// is? \
+<<listbox "$lbanswer" autoselect>>
+	<<option "Towel">>
+	<<option "π" 3.14159>>
+	<<option 42>>
+	<<option 69>>
+	<<option "∞" Infinity>>
+<</listbox>>
+
+Wager how much on Buttstallion in the race? <<numberbox "$wager" 100>>
+
+<<error>>
+
+----
+\
+!Level 1 Heading
+!!Level 2 Heading
+!!!Level 3 Heading
+!!!!Level 4 Heading
+!!!!!Level 5 Heading
+!!!!!!Level 6 Heading
+\
+This is normal text. //Emphasized// it might be now. ''Strong'' other times. __Underlined__ or ==Struck through== too.
+
+Super^^script^^ and Sub~~script~~ are also there.
+
+A horizontal rule:
+
+Unordered list:
+* Item A
+* Item B
+* Item C
+
+An ordered one:
+# First
+# Second
+# Third
+
+>Blockquote
+>>Nested Quote
+>>>Nested nest
+
+{{{this.is("code")}}}
+
+{{{
+	/**
+	 * Code, but in a block
+	 */
+}}}
+
+----
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam quo error quae rerum delectus. Quia labore excepturi, velit rerum eligendi fugiat fuga sapiente magni quasi aliquam vero maxime et aliquid voluptatum, autem necessitatibus ducimus suscipit iure. Corrupti aut possimus ab voluptatum consequuntur consectetur ipsa distinctio vitae! Molestiae dignissimos laudantium rem quia inventore totam magnam ipsa soluta porro expedita ratione provident deleniti corrupti, itaque dolorem est quibusdam ab sit illum vitae sequi incidunt dolore animi. Eos nostrum ratione minima assumenda porro.
+
+Suscipit maxime reiciendis nesciunt, itaque ullam iusto eos! Expedita quis ex rem velit eligendi amet ipsam repellendus, laboriosam itaque provident quam, nam odio veniam iusto? Dolorum exercitationem sequi, harum laboriosam at quod sit ab aliquid vel, assumenda obcaecati, ipsa accusamus dicta hic laudantium fuga. Quisquam debitis minima unde, nulla eaque aliquam illum aperiam ipsa nostrum non natus dolorem assumenda officiis animi, inventore sunt ullam esse delectus consectetur et! Molestiae aperiam quibusdam, alias tempora repellat dolore temporibus enim sunt facilis error aliquam placeat quia earum dolores voluptates recusandae quos odit eius. Illum, molestias! Maxime eos quos illo id, assumenda rerum voluptates est consequatur dignissimos quisquam hic dolorum sit eius ea voluptatibus nam ratione cupiditate recusandae commodi nihil ullam, reprehenderit corporis? Aspernatur, voluptates obcaecati tempore id fugit facere minima assumenda voluptatem enim consectetur quas hic fuga facilis ea eius reprehenderit nostrum, in nemo a quisquam ad.
+
+Ea nihil amet voluptatibus modi obcaecati porro optio laborum autem tenetur voluptates voluptas esse aliquid cupiditate, exercitationem provident neque adipisci quos molestiae a maxime ipsa sequi?

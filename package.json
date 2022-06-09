@@ -1,0 +1,23 @@
+{
+	"name": "sc2-themes",
+	"version": "0.1.0",
+	"description": "Collection of theme stylesheets for SugarCube 2 projects.",
+	"scripts": {
+		"build": "npm run flush && npm run sass-build && npm run tweego-build",
+		"dev": "npm run flush && concurrently --kill-others \"npm run tweego-watch\" \"npm run sass-watch\" \"npm run serve\"",
+		"flush": "rimraf dist/*",
+		"sass-build": "sass --update --no-source-map src/styles:dist/styles",
+		"sass-watch": "sass --update --no-source-map src/styles:dist/styles --watch",
+		"serve": "live-server dist",
+		"tweego-build": "tweego --output=dist/index.html --head=src/head.html src/meta.tw src/index.js",
+		"tweego-watch": "tweego --output=dist/index.html --head=src/head.html src/meta.tw src/index.js --watch"
+	},
+	"author": "cyrusfirheir",
+	"license": "MIT",
+	"devDependencies": {
+		"@compodoc/live-server": "^1.2.3",
+		"concurrently": "^7.2.1",
+		"rimraf": "^3.0.2",
+		"sass": "^1.52.2"
+	}
+}
