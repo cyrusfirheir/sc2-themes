@@ -3,6 +3,7 @@
 		list: [
 			"Base",
 			"Neon Beetle",
+			"Severed Darling",
 		],
 		apply(id) {
 			memorize("theme", id);

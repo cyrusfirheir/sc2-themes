@@ -1,32 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Niramit:ital,wght@0,400;0,700;1,400;1,700&family=PT+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cousine&family=Nunito:ital,wght@0,400;0,700;1,400;1,700&family=Patrick+Hand+SC&display=swap');
 
-$primary: #80deea;
+$primary: #ff5722;
 $dark: #121212;
 
-$bg: mix($primary, $dark, 8%);
+$bg: white;
 
-$text: transparentize(white, 0.13);
-$textDisabled: transparentize(white, 0.62);
+$text: black;
+$disabledBack: #ccc;
+$textDisabled: #888;
 
-$error: #CF6679;
+$error: #b00020;
 
 body {
 	background-color: $bg;
 	color: $text;
-	font-family: 'Niramit', sans-serif;
+	font-family: 'Nunito', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Julius Sans One', sans-serif;
+	font-family: 'Patrick Hand SC', cursive;
 }
 
 hr {
-	border-color: transparentize(mix(white, $primary, 80%), 0.13);
+	position: relative;
+	color: $primary;
+	border-color: $primary;
 	border-width: 2px;
+	margin: 1em auto;
+	max-width: 10rem;
+	overflow: visible;
+	
+	&::before, &::after {
+		content: "╳";
+		font-weight: bold;
+		position: absolute;
+		z-index: 1;
+		top: -3px;
+		left: calc(100% + 0.5rem);
+		transform: translateY(-50%);
+	}
+
+	&::after {
+		left: unset;
+		right: calc(100% + 0.5rem);
+	}
 }
 
 code {
-	font-family: 'PT Mono', monospace;
+	font-family: 'Cousine', monospace;
 }
 
 a {
@@ -39,37 +60,38 @@ a {
 }
 
 button {
-	background-color: mix($dark, $primary, 12%);
+	background-color: $primary;
 	border: none;
-	color: black;
-	transition: outline 0s;
+	color: white;
+	padding: 0.75em 1em;
+	transition: background-color 0s;
 
 	&:hover {
-		background-color: mix(white, $primary, 12%);
+		background-color: mix(white, $primary, 8%);
 	}
 
 	&:active {
-		background-color: mix($dark, $primary, 24%);
+		background-color: mix(white, $primary, 32%);
 	}
 
 	&:disabled, &:disabled:hover {
-		background-color: mix(white, $bg, 8%);
+		background-color: $disabledBack;
 		border: none;
 		color: $textDisabled;
 	}
 }
 
 input, select, textarea {
-	background-color: mix(white, $bg, 8%);
+	background-color: mix($dark, $bg, 4%);
 	border: none;
 	color: $text;
 
 	&:focus:not(:disabled) {
-		background-color: mix(white, $bg, 8%);
+		background-color: mix($dark, $bg, 4%);
 	}
 
 	&:hover:not(:disabled) {
-		background-color: mix(white, $bg, 12%);
+		background-color: mix($dark, $bg, 8%);
 	}
 }
 
@@ -85,7 +107,8 @@ input[type="checkbox"], input[type="radio"] {
 		top: 50%; left: 50%;
 		transform: translate(-50%, -50%);
 		width: 1.5rem; height: 1.5rem;
-		background-color: mix(white, $bg, 24%);
+		border-radius: 4px;
+		background-color: mix($dark, $bg, 24%);
 	}
 	
 	&::after {
@@ -95,8 +118,9 @@ input[type="checkbox"], input[type="radio"] {
 		top: 50%; left: 50%;
 		transform: translate(-50%, -50%);
 		width: 1.5rem; height: 1.5rem;
+		border-radius: 4px;
 		background-color: $primary;
-		color: black;
+		color: white;
 		line-height: 1;
 		text-align: center;
 		font-weight: bold;
@@ -108,13 +132,11 @@ input[type="checkbox"], input[type="radio"] {
 	&:hover {
 		
 		&::before {
-			background-color: mix(white, $bg, 40%);
-			outline: 2px solid $text;
-			outline-offset: 3px;
+			background-color: mix($dark, $bg, 12%);
 		}
 		
 		&::after {
-			background-color: mix($dark, $primary, 24%);
+			background-color: mix(white, $primary, 24%);
 		}
 	}
 	
@@ -145,12 +167,12 @@ input[type="range"] {
 	
 	&::-webkit-slider-runnable-track {
 		border: none;
-		background-color: mix(white, $bg, 8%);
+		background-color: mix($dark, $bg, 8%);
 		height: 0.5rem;
 	}
 	&::-moz-range-track {
 		border: none;
-		background-color: mix(white, $bg, 8%);
+		background-color: mix($dark, $bg, 8%);
 		height: 0.5rem;
 	}
 
@@ -171,10 +193,10 @@ input[type="range"] {
 		background-color: transparent;
 
 		&::-webkit-slider-runnable-track {
-			background-color: mix(white, $bg, 8%);
+			background-color: mix($dark, $bg, 8%);
 		}
 		&::-moz-range-track {
-			background-color: mix(white, $bg, 8%);
+			background-color: mix($dark, $bg, 8%);
 		}
 	}
 	
@@ -182,34 +204,22 @@ input[type="range"] {
 		background-color: transparent;
 
 		&::-webkit-slider-runnable-track {
-			background-color: mix(white, $bg, 12%);
+			background-color: mix($dark, $bg, 12%);
 		}
 		&::-moz-range-track {
-			background-color: mix(white, $bg, 12%);
-		}
-	}
-}
-
-.passage {
-
-	button {
-
-		&:hover:not(:disabled) {
-			outline: 2px solid $primary;
-			outline-offset: 3px;
+			background-color: mix($dark, $bg, 12%);
 		}
 	}
 }
 
 .error-view {
+	color: white;
 
 	button {
-		color: $text;
 		
 		&:hover:not(:disabled) {
 			background-color: transparent;
-			color: white;
-			outline: none;
+			color: mix($dark, $bg, 8%);
 		}
 	}
 }
@@ -221,12 +231,18 @@ input[type="range"] {
 #ui-dialog {
 	#ui-dialog-titlebar {
 		background-color: $primary;
-		color: black;
+		color: white;
 		padding: 0.5rem 0;
-
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		border-bottom-right-radius: 0;
+		
 		#ui-dialog-close {
 			height: 100%;
-			color: black;
+			color: white;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
 
 			&:hover {
 				background-color: $error;
@@ -237,18 +253,18 @@ input[type="range"] {
 	#ui-dialog-body {
 		background-color: $bg;
 		border: none;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
 
 		button {
-			background-color: mix($primary, $dark, 24%);
-			color: white;
+
+			&:not(:disabled) {
+				background-color: mix($primary, $dark, 24%);
+				color: white;
+			}
 
 			&:hover:not(:disabled) {
 				background-color: mix(white, mix($primary, $dark, 24%), 12%);
-			}
-
-			&:disabled {
-				background-color: mix(white, $bg, 8%);
-				color: $textDisabled;
 			}
 		}
 
@@ -274,19 +290,20 @@ input[type="range"] {
 			}
 
 			button[id|=setting-control] {
-				background-color: mix(white, $bg, 8%);
+				background-color: mix($dark, $bg, 4%);
+				color: black;
 				border: none;
 
 				&:hover {
-					background-color: mix(white, $bg, 12%);
+					background-color: mix($dark, $bg, 8%);
 				}
 
 				&.enabled {
 					background-color: $primary;
-					color: black;
+					color: white;
 
 					&:hover {
-						background: mix($dark, $primary, 24%);
+						background: mix(white, $primary, 8%);
 					}
 				}
 			}
@@ -295,33 +312,38 @@ input[type="range"] {
 }
 
 #ui-bar {
-	background-color: mix(white, $bg, 8%);
+	background-color: mix(white, $primary, 70%);
 	border: none;
+	text-align: left;
+
+	#ui-bar-history {
+		padding-left: 1.5em;
+	}
 
 	button, [id|=history], a {
-		color: transparentize(white, 0.4);
+		color: transparentize(black, 0.4);
 		border: none;
 		
 		&:hover:not(:disabled) {
 			background-color: transparent;
-			color: white;
+			color: black;
 			border-color: transparent;
 		}
 		
 		&:disabled {
+			color: transparentize(black, 0.8);
 			border-color: transparent;
 		}
 	}
 	
 	#menu {
 		a {
-			color: transparentize(white, 0.4);
+			color: transparentize(black, 0.4);
 			border: none;
-			border-bottom: 2px solid transparent;
 
 			&:hover:not(:disabled) {
-				color: white;
-				border-color: white;
+				background-color: mix($dark, transparent, 8%);
+				color: black;
 			}
 		}
 	}
@@ -339,10 +361,11 @@ input[type="range"] {
 	}
 }
 
-$thumb: mix(white, $bg, 20%);
-$track: mix(white, $bg, 10%);
+$thumb: mix(white, $primary, 20%);
+$track: mix(white, $primary, 80%);
 
 * {
+	border-radius: 4px;
 	scrollbar-color: $thumb $track;
 	scrollbar-width: thin;
 
@@ -359,7 +382,7 @@ $track: mix(white, $bg, 10%);
 		background-color: $thumb;
 	
 		&:hover {
-			background-color: mix(white, $thumb, 10%);
+			background-color: mix(white, $thumb, 20%);
 		}
 
 		&:active {
@@ -372,6 +395,6 @@ $track: mix(white, $bg, 10%);
 	}
 
 	&::selection {
-		background-color: transparentize($primary, 0.8);
+		background-color: transparentize($primary, 0.9);
 	}
 }

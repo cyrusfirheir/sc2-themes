@@ -41,7 +41,7 @@ Write a short essay about pies:
 <<textarea "$pieEssay" "">>
 
 What's your favorite pie? <<textbox "$pie" "Blueberry">>
-\
+
 The answer to the //Ultimate Question of Life, the Universe, and Everything// is? \
 <<listbox "$lbanswer" autoselect>>
 	<<option "Towel">>
