@@ -72,7 +72,7 @@ input, select, textarea {
 	}
 }
 
-input[type="checkbox"] {
+input[type="checkbox"], input[type="radio"] {
 	position: relative;
 	margin: 0.75rem 0.5rem;
 	accent-color: $primary;
@@ -126,57 +126,15 @@ input[type="checkbox"] {
 }
 
 input[type="radio"] {
-	position: relative;
-	margin: 0.75rem 0.5rem;
-	accent-color: $primary;
 
 	&::before {
-		content: "";
-		position: absolute;
-		z-index: 1;
-		top: 50%; left: 50%;
-		transform: translate(-50%, -50%);
 		border-radius: 50%;
-		width: 1.5rem; height: 1.5rem;
-		background-color: mix(white, $bg, 24%);
 	}
 
 	&::after {
 		content: "";
-		position: absolute;
-		z-index: 2;
-		top: 50%; left: 50%;
-		transform: translate(-50%, -50%);
 		border-radius: 50%;
 		width: 1rem; height: 1rem;
-		background-color: $primary;
-		color: black;
-		line-height: 1;
-		text-align: center;
-		font-weight: bold;
-		font-size: 1rem;
-		opacity: 0;
-		transition: opacity 0.1s ease-in;
-	}
-	
-	&:hover {
-
-		&::before {
-			background-color: mix(white, $bg, 40%);
-			outline: 2px solid $text;
-			outline-offset: 3px;
-		}
-
-		&::after {
-			background-color: mix($dark, $primary, 24%);
-		}
-	}
-
-	&:checked {
-
-		&::after {
-			opacity: 1;
-		}
 	}
 }
 
