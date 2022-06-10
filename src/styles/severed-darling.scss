@@ -11,8 +11,12 @@ $textDisabled: #888;
 
 $error: #b00020;
 
+:root {
+	color-scheme: light;
+}
+
 body {
-	background-color: $bg;
+	background-color: mix(white, $primary, 70%);
 	color: $text;
 	font-family: 'Nunito', sans-serif;
 }
@@ -65,13 +69,17 @@ button {
 	color: white;
 	padding: 0.75em 1em;
 	transition: background-color 0s;
-
+	box-shadow: 2px 2px 4px transparentize($dark, 0.8);
+	transition: box-shadow 0.1s ease-in;
+	
 	&:hover {
 		background-color: mix(white, $primary, 8%);
+		box-shadow: 2px 2px 8px transparentize($dark, 0.8);
 	}
-
+	
 	&:active {
 		background-color: mix(white, $primary, 32%);
+		box-shadow: 2px 2px 2px transparentize($dark, 0.8);
 	}
 
 	&:disabled, &:disabled:hover {
@@ -212,6 +220,11 @@ input[type="range"] {
 	}
 }
 
+#passages {
+	background-color: $bg;
+	padding: 4em;	
+}
+
 .error-view {
 	color: white;
 
@@ -243,6 +256,7 @@ input[type="range"] {
 			border-top-left-radius: 0;
 			border-bottom-left-radius: 0;
 			border-bottom-right-radius: 0;
+			box-shadow: none;
 
 			&:hover {
 				background-color: $error;
@@ -312,9 +326,14 @@ input[type="range"] {
 }
 
 #ui-bar {
-	background-color: mix(white, $primary, 70%);
+	background-color: mix(white, $primary, 80%);
 	border: none;
+	border-radius: 0;
 	text-align: left;
+
+	button {
+		box-shadow: none;
+	}
 
 	#ui-bar-history {
 		padding-left: 1.5em;

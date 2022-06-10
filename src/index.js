@@ -2,6 +2,7 @@
 	const themes = {
 		list: [
 			"Base",
+			"All That Glitters",
 			"Neon Beetle",
 			"Severed Darling",
 		],

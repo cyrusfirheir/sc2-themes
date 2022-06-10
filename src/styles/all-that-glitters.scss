@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Niramit:ital,wght@0,400;0,700;1,400;1,700&family=PT+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inconsolata:wght@400;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 
-$primary: #80deea;
+$primary: #edc080;
+$primaryLight: #f8db9d;
 $dark: #121212;
 
 $bg: mix($primary, $dark, 8%);
@@ -17,20 +18,56 @@ $error: #CF6679;
 body {
 	background-color: $bg;
 	color: $text;
-	font-family: 'Niramit', sans-serif;
+	font-family: 'Libre Baskerville', serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Julius Sans One', sans-serif;
+	font-family: 'Cinzel Decorative', cursive;
+	color: $primaryLight;
 }
 
 hr {
-	border-color: transparentize(mix(white, $primary, 80%), 0.13);
+	position: relative;
+	overflow: visible;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-color: $primary;
 	border-width: 2px;
+	width: 10em;
+	margin: 2em auto;
+
+	&::before, &::after {
+		content: "⬗";
+		position: absolute;
+		color: $primary;
+		translate: 0 -2px;
+		font-size: 2em;
+		right: 100%;
+		margin: 0 -4px;
+	}
+	
+	&::after {
+		content: "⬖";
+		right: unset;
+		left: 100%;
+	}
 }
 
 code {
-	font-family: 'PT Mono', monospace;
+	font-family: 'Inconsolata', monospace;
+}
+
+@keyframes shine {
+	from {
+		filter: brightness(1.0) contrast(1.0) saturate(1.0);
+	}
+	50% {
+		filter: brightness(1.1) contrast(1.1) saturate(1.1);
+	}
+	to {
+		filter: brightness(1.0) contrast(1.0) saturate(1.0);
+	}
 }
 
 a {
@@ -39,24 +76,31 @@ a {
 
 	&:hover {
 		color: mix(white, $primary, 12%);
+		animation: shine 0.5s 0.2s linear;
 	}
 }
 
 button {
+	background-image: linear-gradient(-150deg, $primaryLight, transparent);
 	background-color: mix($dark, $primary, 12%);
 	border: none;
 	color: black;
-	transition: outline 0s;
-
+	transition: background-color 0s;
+	padding: 1em;
+	
 	&:hover {
+		background-image: linear-gradient(-150deg, mix(white, $primaryLight, 12%), transparent);
 		background-color: mix(white, $primary, 12%);
+		animation: shine 0.5s 0.2s linear;
 	}
-
+	
 	&:active {
+		background-image: linear-gradient(-150deg, mix($dark, $primaryLight, 24%), transparent);
 		background-color: mix($dark, $primary, 24%);
 	}
 
 	&:disabled, &:disabled:hover {
+		background-image: none;
 		background-color: mix(white, $bg, 8%);
 		border: none;
 		color: $textDisabled;
@@ -64,6 +108,7 @@ button {
 }
 
 input, select, textarea {
+	background-image: linear-gradient(-150deg, mix(white, $bg, 16%), transparent);
 	background-color: mix(white, $bg, 8%);
 	border: none;
 	color: $text;
@@ -73,6 +118,7 @@ input, select, textarea {
 	}
 
 	&:hover:not(:disabled) {
+		background-image: linear-gradient(-150deg, mix(white, $bg, 24%), transparent);
 		background-color: mix(white, $bg, 12%);
 	}
 }
@@ -89,6 +135,7 @@ input[type="checkbox"], input[type="radio"] {
 		top: 50%; left: 50%;
 		transform: translate(-50%, -50%);
 		width: 1.5rem; height: 1.5rem;
+		background-image: linear-gradient(-150deg, mix(white, $bg, 30%), transparent);
 		background-color: mix(white, $bg, 24%);
 	}
 	
@@ -99,6 +146,7 @@ input[type="checkbox"], input[type="radio"] {
 		top: 50%; left: 50%;
 		transform: translate(-50%, -50%);
 		width: 1.5rem; height: 1.5rem;
+		background-image: linear-gradient(-150deg, $primaryLight, transparent);
 		background-color: $primary;
 		color: black;
 		line-height: 1;
@@ -112,13 +160,13 @@ input[type="checkbox"], input[type="radio"] {
 	&:hover {
 		
 		&::before {
+			background-image: linear-gradient(-150deg, mix(white, $bg, 50%), transparent);
 			background-color: mix(white, $bg, 40%);
-			outline: 2px solid $text;
-			outline-offset: 3px;
 		}
 		
 		&::after {
-			background-color: mix(white, $primary, 12%);
+			background-image: linear-gradient(-150deg, mix(white, $primaryLight, 80%), transparent);
+			background-color: mix(white, $primary, 80%);
 		}
 	}
 	
@@ -194,26 +242,15 @@ input[type="range"] {
 	}
 }
 
-.passage {
-
-	button {
-
-		&:hover:not(:disabled) {
-			outline: 2px solid $primary;
-			outline-offset: 3px;
-		}
-	}
-}
-
 .error-view {
 
 	button {
+		background-image: none;
 		color: $text;
 		
 		&:hover:not(:disabled) {
 			background-color: transparent;
 			color: white;
-			outline: none;
 		}
 	}
 }
@@ -223,12 +260,21 @@ input[type="range"] {
 }
 
 #ui-dialog {
+
+	button {
+		animation: none;
+	}
+
 	#ui-dialog-titlebar {
 		background-color: $primary;
-		color: black;
 		padding: 0.5rem 0;
+		
+		#ui-dialog-title {
+			color: black;
+		}
 
 		#ui-dialog-close {
+			background-image: none;
 			height: 100%;
 			color: black;
 
@@ -243,11 +289,12 @@ input[type="range"] {
 		border: none;
 
 		button {
-			background-color: mix($primary, $dark, 24%);
+			background-image: none;
+			background-color: mix($primary, $dark, 36%);
 			color: white;
 
 			&:hover:not(:disabled) {
-				background-color: mix(white, mix($primary, $dark, 24%), 12%);
+				background-color: mix(white, mix($primary, $dark, 34%), 12%);
 			}
 
 			&:disabled {
@@ -273,7 +320,12 @@ input[type="range"] {
 
 		&.settings {
 
+			select {
+				background-image: none;
+			}
+
 			input[type="range"] {
+				background-image: none;
 				padding-right: 0;
 			}
 
@@ -303,6 +355,7 @@ input[type="range"] {
 	border: none;
 
 	button, [id|=history], a {
+		background-image: none;
 		color: transparentize(white, 0.4);
 		border: none;
 		
@@ -320,12 +373,12 @@ input[type="range"] {
 	#menu {
 		a {
 			color: transparentize(white, 0.4);
-			border: none;
-			border-bottom: 2px solid transparent;
+			// border: none;
+			border: 2px solid transparent;
 
 			&:hover:not(:disabled) {
-				color: white;
-				border-color: white;
+				color: $primaryLight;
+				border-image: linear-gradient(-150deg, $primaryLight, $primary) 1;
 			}
 		}
 	}
@@ -343,8 +396,8 @@ input[type="range"] {
 	}
 }
 
-$thumb: mix(white, $bg, 20%);
-$track: mix(white, $bg, 10%);
+$thumb: mix(white, $bg, 40%);
+$track: mix(white, $bg, 20%);
 
 * {
 	scrollbar-color: $thumb $track;
@@ -376,6 +429,6 @@ $track: mix(white, $bg, 10%);
 	}
 
 	&::selection {
-		background-color: transparentize($primary, 0.8);
+		background-color: transparentize($primary, 0.7);
 	}
 }
