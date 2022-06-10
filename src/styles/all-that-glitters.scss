@@ -33,15 +33,15 @@ hr {
 	align-items: center;
 	justify-content: center;
 	border-color: $primary;
-	border-width: 2px;
-	width: 10em;
+	border-width: 3px;
+	width: 30%;
 	margin: 2em auto;
 
 	&::before, &::after {
 		content: "⬗";
 		position: absolute;
 		color: $primary;
-		translate: 0 -2px;
+		translate: 0 -3px;
 		font-size: 2em;
 		right: 100%;
 		margin: 0 -4px;
