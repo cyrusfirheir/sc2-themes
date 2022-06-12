@@ -27,7 +27,7 @@ Current: <<= recall("theme", setup.themes.list[0])>>
 
 <<link "Link to another world" `passage()`>><</link>> (Which probably doesn't work?)
 
-<<button "Button which does nothing">><</button>> (Shouldn't, at least…)
+<<link "Link which does nothing">><</link>> <<button "Button which does nothing">><</button>> (Shouldn't, at least…)
 
 What pies do you enjoy?
 * <label><<checkbox "$pieBlueberry" false true checked>> Blueberry?</label>

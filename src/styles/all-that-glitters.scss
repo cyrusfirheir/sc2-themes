@@ -78,6 +78,10 @@ a {
 		color: mix(white, $primary, 12%);
 		animation: shine 0.5s 0.2s linear;
 	}
+
+	&:active {
+		color: mix($dark, $primary, 24%);
+	}
 }
 
 button {

@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Niramit:ital,wght@0,400;0,700;1,400;1,700&family=PT+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&family=IM+Fell+English+SC&family=Nanum+Gothic+Coding&display=swap');
 
-$primary: #80deea;
+$primary: #cc1d22;
+$primaryLight: #ff5b5b;
 $dark: #121212;
 
-$bg: mix($primary, $dark, 8%);
+$bg: $dark;
 
 $text: transparentize(white, 0.13);
 $textDisabled: transparentize(white, 0.62);
@@ -17,42 +18,63 @@ $error: #CF6679;
 body {
 	background-color: $bg;
 	color: $text;
-	font-family: 'Niramit', sans-serif;
+	font-family: 'Caudex', serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Julius Sans One', sans-serif;
+	font-family: 'IM Fell English SC', serif;
+	font-weight: normal;
 }
 
 hr {
+	color: $primary;
+	font-size: 1.5em;
+	font-weight: bold;
 	border: none;
-	border-bottom: 2px solid $primary;
-	width: 80%;
-	margin: 2em auto;
+	position: relative;
+	overflow: visible;
+
+	&::after {
+		content: "✗ ✗ ✗";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		translate: -50% -50%;
+	}
 }
 
 code {
-	font-family: 'PT Mono', monospace;
+	font-family: 'Nanum Gothic Coding', monospace;
 }
 
 a {
-	color: $primary;
-	padding: 0.75em 0;
+	color: $primaryLight;
+	border-bottom: 4px solid $primary;
+	padding: 0.5em;
+	background-image: linear-gradient(0deg, $primary 50%, transparent 50%);
+	background-size: 100% 200%;
+	background-position-y: -10%;
+	background-repeat: no-repeat;
+	transition-duration: 0.1s;
 
 	&:hover {
-		color: mix(white, $primary, 12%);
+		text-decoration: none;
+		color: white;
+		background-position-y: 100%;
+		border-color: white;
 	}
 
 	&:active {
-		color: mix($dark, $primary, 24%);
+		background-position-y: 0%;
 	}
 }
 
 button {
-	background-color: mix($dark, $primary, 12%);
+	background-color: $primary;
 	border: none;
-	color: black;
-	transition: outline 0s;
+	color: white;
+	padding: 0.75em 1em;
+	transition-duration: 0.1s;
 
 	&:hover {
 		background-color: mix(white, $primary, 12%);
@@ -60,6 +82,7 @@ button {
 
 	&:active {
 		background-color: mix($dark, $primary, 24%);
+		box-shadow: 0 0 0 0 white;
 	}
 
 	&:disabled, &:disabled:hover {
@@ -95,7 +118,8 @@ input[type="checkbox"], input[type="radio"] {
 		top: 50%; left: 50%;
 		transform: translate(-50%, -50%);
 		width: 1.5rem; height: 1.5rem;
-		background-color: mix(white, $bg, 24%);
+		background-color: mix(white, $bg, 4%);
+		border: 2px solid mix(white, $bg, 28%);
 	}
 	
 	&::after {
@@ -119,12 +143,10 @@ input[type="checkbox"], input[type="radio"] {
 		
 		&::before {
 			background-color: mix(white, $bg, 40%);
-			outline: 2px solid $text;
-			outline-offset: 3px;
 		}
 		
 		&::after {
-			background-color: mix(white, $primary, 12%);
+			background-color: mix(white, $primary, 40%);
 		}
 	}
 	
@@ -155,12 +177,12 @@ input[type="range"] {
 	
 	&::-webkit-slider-runnable-track {
 		border: none;
-		background-color: mix(white, $bg, 8%);
+		background-color: mix(white, $bg, 12%);
 		height: 0.5rem;
 	}
 	&::-moz-range-track {
 		border: none;
-		background-color: mix(white, $bg, 8%);
+		background-color: mix(white, $bg, 12%);
 		height: 0.5rem;
 	}
 
@@ -181,10 +203,10 @@ input[type="range"] {
 		background-color: transparent;
 
 		&::-webkit-slider-runnable-track {
-			background-color: mix(white, $bg, 8%);
+			background-color: mix(white, $bg, 12%);
 		}
 		&::-moz-range-track {
-			background-color: mix(white, $bg, 8%);
+			background-color: mix(white, $bg, 12%);
 		}
 	}
 	
@@ -192,21 +214,43 @@ input[type="range"] {
 		background-color: transparent;
 
 		&::-webkit-slider-runnable-track {
-			background-color: mix(white, $bg, 12%);
+			background-color: mix(white, $bg, 16%);
 		}
 		&::-moz-range-track {
-			background-color: mix(white, $bg, 12%);
+			background-color: mix(white, $bg, 16%);
 		}
 	}
 }
 
 .passage {
 
-	button {
-
-		&:hover:not(:disabled) {
-			outline: 2px solid $primary;
-			outline-offset: 3px;
+	button:not(.error-toggle) {
+		background-color: transparent;
+		border: 2px solid $primary;
+		color: $primaryLight;
+		box-shadow: 4px 4px 0 0 $primary;
+		margin: -4px 4px 4px 4px;
+	
+		&:hover {
+			color: white;
+			border-color: $primary;
+			background-color: $primary;
+			box-shadow: 4px 4px 0 0 white;
+		}
+	
+		&:active {
+			color: white;
+			background-color: mix($dark, $primary, 24%);
+			border-color: mix($dark, $primary, 24%);
+			box-shadow: 0 0 0 0 white;
+			translate: 4px 4px;
+		}
+	
+		&:disabled, &:disabled:hover {
+			background-color: mix(white, $bg, 8%);
+			border: 1px solid $textDisabled;
+			box-shadow: 4px 4px 0 0 $textDisabled;
+			color: $textDisabled;
 		}
 	}
 }
@@ -219,7 +263,6 @@ input[type="range"] {
 		&:hover:not(:disabled) {
 			background-color: transparent;
 			color: white;
-			outline: none;
 		}
 	}
 }
@@ -231,12 +274,12 @@ input[type="range"] {
 #ui-dialog {
 	#ui-dialog-titlebar {
 		background-color: $primary;
-		color: black;
+		color: white;
 		padding: 0.5rem 0;
 
 		#ui-dialog-close {
 			height: 100%;
-			color: black;
+			color: white;
 
 			&:hover {
 				background-color: $error;
@@ -249,11 +292,11 @@ input[type="range"] {
 		border: none;
 
 		button {
-			background-color: mix($primary, $dark, 24%);
+			background-color: mix($primary, $dark, 30%);
 			color: white;
 
 			&:hover:not(:disabled) {
-				background-color: mix(white, mix($primary, $dark, 24%), 12%);
+				background-color: mix(white, mix($primary, $dark, 30%), 12%);
 			}
 
 			&:disabled {
@@ -263,6 +306,10 @@ input[type="range"] {
 		}
 
 		&.saves {
+
+			button {
+				min-width: 5em;
+			}
 
 			tr {
 				border: none;
@@ -293,7 +340,7 @@ input[type="range"] {
 
 				&.enabled {
 					background-color: $primary;
-					color: black;
+					color: white;
 
 					&:hover {
 						background: mix($dark, $primary, 24%);
@@ -325,13 +372,12 @@ input[type="range"] {
 	
 	#menu {
 		a {
+			background-image: linear-gradient(0deg, transparentize($primary, 0.5) 50%, transparent 50%);
 			color: transparentize(white, 0.4);
 			border: none;
-			border-bottom: 2px solid transparent;
 
 			&:hover:not(:disabled) {
 				color: white;
-				border-color: white;
 			}
 		}
 	}
@@ -382,6 +428,6 @@ $track: mix(white, $bg, 10%);
 	}
 
 	&::selection {
-		background-color: transparentize($primary, 0.8);
+		background-color: transparentize($primary, 0.4);
 	}
 }

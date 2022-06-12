@@ -5,6 +5,7 @@
 			"All That Glitters",
 			"Neon Beetle",
 			"Severed Darling",
+			"Thicker Than Water",
 		],
 		apply(id) {
 			memorize("theme", id);
